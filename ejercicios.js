@@ -57,10 +57,15 @@ function imprimirTabla(n1){
     document.write('<h1>Se va a imprimir la tabla del '+n1+'</h1></br>');
 
     for(var i=0; i<=10;i++){
-        document.write('<p>'+n1+' x '+i+' = '+(n1*i)+'<p></br>');
+        disenoTabla(n1,i);
     }
 }
 
+function disenoTabla(n1,i){
+    document.write('<p>'+n1+' x '+i+' = '+(n1*i)+'<p></br>');
+}
+
+//esta funcion no se uso
 function validarNumeroMayor(n1,n2){
 
     if(n1>n2){
