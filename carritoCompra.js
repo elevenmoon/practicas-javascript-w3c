@@ -5,9 +5,9 @@ var numeroItemAgregado = 0;
 
 //opciones del carrito
 const agregarElmentos = function(carritoCompra){
-    alert('entro en agregar');
-    let cantidad = parseInt(prompt('introducir la cantidad del producto', 'colocar numeros naturas'));
-    let descripcionElemento = prompt('descripcion del producto', 'coloque el numero del producto');
+    //alert('entro en agregar');
+    let cantidad = parseInt(prompt('introducir la cantidad del producto', 'colocar numeros naturales'));
+    let descripcionElemento = prompt('descripcion del producto', 'coloque el nombre del producto');
     let valorPruducto = parseFloat(prompt('valor del producto sin IVA', 'colocar el decimal con punto'));
     let codigoProducto = 'item'+numeroItemAgregado;
 
