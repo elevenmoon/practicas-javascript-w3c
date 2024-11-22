@@ -36,10 +36,33 @@ const agregarElmentos = function(carritoCompra){
 
 const mostrarElementos = function(carritoCompra){
     alert('entro en mostrar');
+    let claves = Object.keys(carritoCompra);
+    console.log(claves.length)
+    for(let i=0; i<claves.length; i++){
+        let clave = claves[i];
+        console.log(carritoCompra[clave]);
+        for(let clavesInternas in claves){
+            console.log(claves[clavesInternas]);
+       }
+    }
+    /*let clavesInternas = Object.keys(claves);
+    console.log(clavesInternas.length);
+    for(let j=0;j<clavesInternas.length; j++){
+        let claveIinterna = clavesInternas[j];
+        console.log(claves[claveIinterna]);
+    }*/
+
 }
 
 const modificarElemento = function(carritoCompra){
     alert('modificar');
+    let codigoElemento = prompt('Pasar el codigo del elemento a modificar', 'ejemplo: item0');
+    let cantidaProducto = parseInt(prompt('cantidad del producto','numeros naturales'));
+    let montoProducto = parseFloat(prompt('precio del producto sin IVA', 'monto con decimales'));
+
+    const objetoEncontrado = carritoCompra.hasOwnProperty(codigoElemento);
+    
+    console.log(objetoEncontrado);
 }
 
 const eliminarElemento = function(carritoCompra){
