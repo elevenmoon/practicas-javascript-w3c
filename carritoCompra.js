@@ -6,6 +6,7 @@ var numeroItemAgregado = 0;
 //opciones del carrito
 const agregarElmentos = function(carritoCompra){
     //alert('entro en agregar');
+    //datos que se piden para generar el elemento del carrito
     let cantidad = parseInt(prompt('introducir la cantidad del producto', 'colocar numeros naturales'));
     let descripcionElemento = prompt('descripcion del producto', 'coloque el nombre del producto');
     let valorPruducto = parseFloat(prompt('valor del producto sin IVA', 'colocar el decimal con punto'));
@@ -17,19 +18,20 @@ const agregarElmentos = function(carritoCompra){
     //alert(descripcionElemento);
     //alert(valorPruducto);
     
+    //crear el objeto del nuevo elemento
+    let nuevoElemento = { [codigoProducto]: { cantidad: cantidad, descripcionelemento: descripcionElemento, valorproducto: valorPruducto } };
 
-    let nuevoElemento = { [codigoProducto]: { cantidad: cantidad, descripcionelemento: descripcionElemento, valorpruducto: valorPruducto } };
-
-
+    //contador de Items agregados
     numeroItemAgregado++;
 
     //revisar la salida de objetos
     //console.log(carritoCompra);
     //console.log(nuevoElemento);
 
+    //agregar el nuevo item al carrito de compra
     Object.assign(carritoCompra,nuevoElemento);
     
-    console.log(carritoCompra);
+    //console.log(carritoCompra);
 
     return carritoCompra;
 }
@@ -46,7 +48,7 @@ const mostrarElementos = function(carritoCompra){
             console.log(key +' '+value)
           });
     }
-    /*formas que no funcionaron
+    /*formas que no funcionaron por errores basicos XD despues las pruebo
     /*let clavesInternas = Object.keys(claves);
     console.log(clavesInternas.length);
     for(let j=0;j<clavesInternas.length; j++){
@@ -62,26 +64,51 @@ const mostrarElementos = function(carritoCompra){
 
 const modificarElemento = function(carritoCompra){
     alert('modificar');
+    //pedir el codigo del elemento del carrito a modificar
     let codigoElemento = prompt('Pasar el codigo del elemento a modificar', 'ejemplo: item0');
-    let cantidaProducto = parseInt(prompt('cantidad del producto','numeros naturales'));
-    let montoProducto = parseFloat(prompt('precio del producto sin IVA', 'monto con decimales'));
 
+    //
+    if(carritoCompra.hasOwnProperty(codigoElemento)){
+
+        //pedir los datos para modificar
+        let cantidaProducto = parseInt(prompt('cantidad del producto','numeros naturales'));
+        let montoProducto = parseFloat(prompt('precio del producto sin IVA', 'monto con decimales'));
     
+        //modificar los datos
+        carritoCompra[codigoElemento["cantidad"]] = cantidaProducto;
+        carritoCompra[codigoElemento["valorproducto"]] = montoProducto;
+
+        //mensaje para saber si modifico los datos
+        alert(`el elemento del carrito a sido modificado`)
+    }else{
+        //mensaje para saber sino encuentra el codigo del elemento en el carrito
+        alert(`el codigo ${codigoElemento} no se encuentra en el carrito`)
+    }
     
-    console.log(objetoEncontrado);
+    //console.log(carritoCompra);
 }
 
 const eliminarElemento = function(carritoCompra){
-    alert('eliminar');
+    //alert('eliminar');
 
-    console.log(carritoCompra);
-    alert(carritoCompra);
+    //console.log(carritoCompra);
+    //alert(carritoCompra);
+    
+    //pedir el codigo elemento del carrito que se va eliminar
+    let codigoElemento = prompt('codigo del producto', 'item0');
 
-    let codigoProducto = prompt('codigo del producto', 'item0');
+    //eliminando producto
+    if(carritoCompra.hasOwnProperty(codigoElemento)){
+    
+    //eliminar el producto ingresado del carrito
+        delete carritoCompra[codigoProducto];
+        alert('elemento eliminado');
+    }else{
+        //no se encotro el codigo del elemento en el carrito
+        alert('el codigo del elemento a eliminar no se encontro en el carrito de compra')
+    }
 
-    delete carritoCompra[codigoProducto];
-
-    alert(carritoCompra);
+    //alert(carritoCompra);
 }
 
 
@@ -95,8 +122,8 @@ do{
             2 - Mostrar los elementos.
             3 - Modificar el elemento.
             4 - Sacar un elemento.`));
-        console.log(controlCRUDCarrito);
-        alert(controlCRUDCarrito);
+        //console.log(controlCRUDCarrito);
+        //alert(controlCRUDCarrito);
         if(parseInt(controlCRUDCarrito) == 1){
             //crear un elemento
             agregarElmentos(carritoCompra);
@@ -128,9 +155,9 @@ do{
         }
     }
 
-    console.log('voy por aqui');
+    //console.log('voy por aqui');
     controlOpciones = confirm('Quiere agregar un nuevo elemento al carrito');
      
-    console.log(controlOpciones);
+    //console.log(controlOpciones);
 
 }while(controlOpciones == true);
