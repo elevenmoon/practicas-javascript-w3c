@@ -40,16 +40,22 @@ const mostrarElementos = function(carritoCompra){
     console.log(claves.length)
     for(let i=0; i<claves.length; i++){
         let clave = claves[i];
+        console.log(clave);
         console.log(carritoCompra[clave]);
-        for(let clavesInternas in claves){
-            console.log(claves[clavesInternas]);
-       }
+        Object.entries(carritoCompra[clave]).forEach(([key, value]) => {
+            console.log(key +' '+value)
+          });
     }
+    /*formas que no funcionaron
     /*let clavesInternas = Object.keys(claves);
     console.log(clavesInternas.length);
     for(let j=0;j<clavesInternas.length; j++){
         let claveIinterna = clavesInternas[j];
         console.log(claves[claveIinterna]);
+    }*/
+    /*for(let clavesInternas in carritoCompra[clave]){
+
+        console.log(carritoCompra[clave[clavesInternas]]);
     }*/
 
 }
@@ -60,7 +66,7 @@ const modificarElemento = function(carritoCompra){
     let cantidaProducto = parseInt(prompt('cantidad del producto','numeros naturales'));
     let montoProducto = parseFloat(prompt('precio del producto sin IVA', 'monto con decimales'));
 
-    const objetoEncontrado = carritoCompra.hasOwnProperty(codigoElemento);
+    
     
     console.log(objetoEncontrado);
 }
